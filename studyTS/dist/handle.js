@@ -70,16 +70,4 @@ var Handler = /** @class */ (function () {
     Handler._gid = 0;
     return Handler;
 }());
-var A = /** @class */ (function () {
-    function A() {
-    }
-    A.prototype.add = function (num1, num2) {
-        var sum = 10;
-        console.log(sum + num1);
-        return num1 + num2;
-    };
-    return A;
-}());
-var a = new A();
-a.add(1, 10);
 //# sourceMappingURL=handle.js.map
