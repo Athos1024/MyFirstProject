@@ -1,3 +1,6 @@
+//https://github.com/youlookwhat/DesignPattern
+//https://www.yiibai.com/design_pattern/abstract_factory_pattern.html
+//https://www.runoob.com/design-pattern/builder-pattern.html
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,8 +14,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-//https://github.com/youlookwhat/DesignPattern
-//https://www.yiibai.com/design_pattern/abstract_factory_pattern.html
 //传入类名
 var A = /** @class */ (function () {
     function A() {
@@ -35,6 +36,7 @@ fun(A);
  */
 //ts删除可以用 null
 //删除对象属性可以用delete
+//js.map是用来断点ts脚本
 //单列模式
 var singleton;
 (function (singleton) {
@@ -116,6 +118,10 @@ var observer;
 })(observer || (observer = {}));
 //==================================//
 //工厂模式
+/**
+优点： 1、一个调用者想创建一个对象，只要知道其名称就可以了。 2、扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。 3、屏蔽产品的具体实现，调用者只关心产品的接口。
+缺点：每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。
+ */
 var Factory;
 (function (Factory_1) {
     // 1、静态工厂模式
@@ -332,4 +338,176 @@ var Factory;
         })(c = Factory.c || (Factory.c = {}));
     })(Factory || (Factory = {}));
 })(Factory || (Factory = {}));
+//=======================================//
+/**
+优点： 1、算法可以自由切换。 2、避免使用多重条件判断。 3、扩展性良好。
+缺点： 1、策略类会增多。 2、所有策略类都需要对外暴露。
+ */
+//策略模式
+var Strategy;
+(function (Strategy) {
+    var AttackJYSG = /** @class */ (function () {
+        function AttackJYSG() {
+        }
+        AttackJYSG.prototype.attack = function () {
+            console.log('九阳神功');
+        };
+        return AttackJYSG;
+    }());
+    var DefendTBS = /** @class */ (function () {
+        function DefendTBS() {
+        }
+        DefendTBS.prototype.defend = function () {
+            console.log('贴布衫');
+        };
+        return DefendTBS;
+    }());
+    var DisplayYZ = /** @class */ (function () {
+        function DisplayYZ() {
+        }
+        DisplayYZ.prototype.display = function () {
+            console.log('样子');
+        };
+        return DisplayYZ;
+    }());
+    var RunYWD = /** @class */ (function () {
+        function RunYWD() {
+        }
+        RunYWD.prototype.run = function () {
+            console.log('烟雾弹');
+        };
+        return RunYWD;
+    }());
+    var Role = /** @class */ (function () {
+        function Role() {
+        }
+        Role.prototype.setDefendBehavior = function (defendBehavior) {
+            this.defendBehavior = defendBehavior;
+            return this;
+        };
+        Role.prototype.setAttackBehavior = function (attackBehavior) {
+            this.attackBehavior = attackBehavior;
+            return this;
+        };
+        Role.prototype.setDisplayBehavior = function (displayBeHavior) {
+            this.displayBeHavior = displayBeHavior;
+            return this;
+        };
+        Role.prototype.setRunBehavior = function (runBehavior) {
+            this.runBehavior = runBehavior;
+            return this;
+        };
+        Role.prototype.defend = function () {
+            this.defendBehavior.defend();
+        };
+        Role.prototype.attack = function () {
+            this.attackBehavior.attack();
+        };
+        Role.prototype.display = function () {
+            this.displayBeHavior.display();
+        };
+        Role.prototype.run = function () {
+            this.runBehavior.run();
+        };
+        return Role;
+    }());
+    var RoleA = /** @class */ (function (_super) {
+        __extends(RoleA, _super);
+        function RoleA(name) {
+            var _this = _super.call(this) || this;
+            _this.name = name;
+            return _this;
+        }
+        return RoleA;
+    }(Role));
+    var roleA = new RoleA("A");
+    roleA.setAttackBehavior(new AttackJYSG())
+        .setDefendBehavior(new DefendTBS())
+        .setDisplayBehavior(new DisplayYZ())
+        .setRunBehavior(new RunYWD());
+    roleA.attack();
+    roleA.defend();
+    roleA.display();
+    roleA.run();
+})(Strategy || (Strategy = {}));
+var Attack1 = /** @class */ (function () {
+    function Attack1() {
+    }
+    Attack1.prototype.attack = function () {
+        console.log('attack');
+    };
+    return Attack1;
+}());
+var Dispaly1 = /** @class */ (function () {
+    function Dispaly1() {
+    }
+    Dispaly1.prototype.display = function () {
+        console.log('display');
+    };
+    return Dispaly1;
+}());
+var Run1 = /** @class */ (function () {
+    function Run1() {
+    }
+    Run1.prototype.run = function () {
+        console.log('run');
+    };
+    return Run1;
+}());
+var Defend1 = /** @class */ (function () {
+    function Defend1() {
+    }
+    Defend1.prototype.defend = function () {
+        console.log('defend');
+    };
+    return Defend1;
+}());
+var Role = /** @class */ (function () {
+    function Role() {
+    }
+    Role.prototype.setAttackBeHavior = function (attackBehavior) {
+        this.attackBehavior = attackBehavior;
+        return this;
+    };
+    Role.prototype.setDefendBehavior = function (defendBehavior) {
+        this.defendBehavior = defendBehavior;
+        return this;
+    };
+    Role.prototype.setDisplayBehavior = function (displayBehavior) {
+        this.displayBehavior = displayBehavior;
+        return this;
+    };
+    Role.prototype.setRunBeHavior = function (runBehavior) {
+        this.runBehavior = runBehavior;
+        return this;
+    };
+    Role.prototype.run = function () {
+        this.runBehavior.run();
+    };
+    Role.prototype.display = function () {
+        this.displayBehavior.display();
+    };
+    Role.prototype.defend = function () {
+        this.defendBehavior.defend();
+    };
+    Role.prototype.attack = function () {
+        this.attackBehavior.attack();
+    };
+    return Role;
+}());
+var RoleA = /** @class */ (function (_super) {
+    __extends(RoleA, _super);
+    function RoleA(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        return _this;
+    }
+    return RoleA;
+}(Role));
+var roleA = new RoleA("a");
+roleA.setDisplayBehavior(new Dispaly1()).setRunBeHavior(new Run1()).setDefendBehavior(new Defend1()).setAttackBeHavior(new Attack1());
+roleA.run();
+roleA.display();
+roleA.defend();
+roleA.attack();
 //# sourceMappingURL=DesignModel.js.map

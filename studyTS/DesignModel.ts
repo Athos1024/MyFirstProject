@@ -1,5 +1,7 @@
 //https://github.com/youlookwhat/DesignPattern
 //https://www.yiibai.com/design_pattern/abstract_factory_pattern.html
+//https://www.runoob.com/design-pattern/builder-pattern.html
+
 //传入类名
 class A {
 }
@@ -22,6 +24,9 @@ fun(A)
 
 //ts删除可以用 null
 //删除对象属性可以用delete
+
+//js.map是用来断点ts脚本
+
 
 //单列模式
 namespace singleton {
@@ -141,6 +146,10 @@ namespace observer {
 //==================================//
 
 //工厂模式
+/**
+优点： 1、一个调用者想创建一个对象，只要知道其名称就可以了。 2、扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。 3、屏蔽产品的具体实现，调用者只关心产品的接口。
+缺点：每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。
+ */
 namespace Factory {
 
     // 1、静态工厂模式
@@ -335,3 +344,119 @@ namespace Factory {
 
 }
 
+//=======================================//
+
+/**
+优点： 1、算法可以自由切换。 2、避免使用多重条件判断。 3、扩展性良好。
+缺点： 1、策略类会增多。 2、所有策略类都需要对外暴露。
+ */
+//策略模式
+namespace Strategy {
+
+    //攻击
+    interface IAttackBehavior{
+        attack():void;
+    }
+
+    //防御
+    interface IDefendBehavior{
+        defend():void;
+    }
+
+    //显示
+    interface IDisplayBehavior{
+        display():void;
+    }
+
+    //逃跑
+    interface IRunBehavior{
+        run():void;
+    }
+
+    class AttackJYSG implements IAttackBehavior{
+        attack(){
+            console.log('九阳神功');
+        }
+    }
+
+    class DefendTBS implements IDefendBehavior{
+        defend(){
+            console.log('贴布衫');
+        }
+    }
+
+    class DisplayYZ implements IDisplayBehavior{
+        display(){
+            console.log('样子');
+        }
+    }
+
+    class RunYWD implements IRunBehavior{
+        run(){
+            console.log('烟雾弹');
+        }
+    }
+
+    abstract class Role{
+        protected name:string;
+
+        protected defendBehavior:IDefendBehavior;
+        protected attackBehavior:IAttackBehavior;
+        protected displayBeHavior:IDisplayBehavior;
+        protected runBehavior:IRunBehavior;
+
+        public setDefendBehavior(defendBehavior:IDefendBehavior):Role{
+            this.defendBehavior = defendBehavior;
+            return this;
+        }
+
+        public setAttackBehavior(attackBehavior:IAttackBehavior):Role{
+            this.attackBehavior = attackBehavior;
+            return this;
+        }
+
+        public setDisplayBehavior(displayBeHavior:IDisplayBehavior):Role{
+            this.displayBeHavior = displayBeHavior;
+            return this;
+        }
+
+        public setRunBehavior(runBehavior:IRunBehavior):Role{
+            this.runBehavior = runBehavior;
+            return this;
+        }
+
+        public defend():void{
+            this.defendBehavior.defend();
+        }
+
+        public attack():void{
+            this.attackBehavior.attack();
+        }
+
+        public display():void{
+            this.displayBeHavior.display();
+        }
+
+        public run():void{
+            this.runBehavior.run();
+        }
+
+    }
+
+    class RoleA extends Role{
+        constructor(name:string){
+            super();
+            this.name = name;
+        }           
+    }
+
+    let roleA = new RoleA("A");
+    roleA.setAttackBehavior(new AttackJYSG())
+    .setDefendBehavior(new DefendTBS())
+    .setDisplayBehavior(new DisplayYZ())
+    .setRunBehavior(new RunYWD()); 
+    roleA.attack();
+    roleA.defend();
+    roleA.display();
+    roleA.run();
+}
