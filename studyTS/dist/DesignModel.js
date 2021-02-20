@@ -37,6 +37,7 @@ fun(A);
 //ts删除可以用 null
 //删除对象属性可以用delete
 //js.map是用来断点ts脚本
+//ctrl + i 补全
 //单列模式
 var singleton;
 (function (singleton) {
@@ -431,6 +432,14 @@ var Strategy;
     roleA.run();
 })(Strategy || (Strategy = {}));
 //**================== */
+/**
+优点： 1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。
+
+缺点： 1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是
+ A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。
+ 因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，
+ 所以至多只能适配一个适配者类，而且目标类必须是抽象类。
+ */
 //适配器模式
 var Adapter;
 (function (Adapter) {
@@ -471,4 +480,85 @@ var Adapter;
     var v5Power = new V5PowerAdapter(new V220Power());
     mobile.inputPower(v5Power);
 })(Adapter || (Adapter = {}));
+//==================================
+//命令模式
+var Command;
+(function (Command) {
+    //门
+    var Door = /** @class */ (function () {
+        function Door() {
+        }
+        Door.prototype.Open = function () {
+            console.log('开门');
+        };
+        Door.prototype.Close = function () {
+            console.log("关门");
+        };
+        return Door;
+    }());
+    //灯
+    var Light = /** @class */ (function () {
+        function Light() {
+        }
+        Light.prototype.on = function () {
+            console.log('开灯');
+        };
+        Light.prototype.off = function () {
+            console.log('关灯');
+        };
+        return Light;
+    }());
+    //关灯命令
+    var LightOffCommond = /** @class */ (function () {
+        function LightOffCommond(light) {
+            this.light = light;
+        }
+        LightOffCommond.prototype.Excute = function () {
+            this.light.off();
+        };
+        return LightOffCommond;
+    }());
+    //开灯命令
+    var LightOnCommond = /** @class */ (function () {
+        function LightOnCommond(light) {
+            this.light = light;
+        }
+        LightOnCommond.prototype.Excute = function () {
+            this.light.on();
+        };
+        return LightOnCommond;
+    }());
+    var NoCommand = /** @class */ (function () {
+        function NoCommand() {
+        }
+        NoCommand.prototype.Excute = function () {
+        };
+        return NoCommand;
+    }());
+    var ControlPanel = /** @class */ (function () {
+        function ControlPanel() {
+            this.CONTROL_SIZE = 9;
+            this.commandList = [];
+            for (var i = 0; i < this.CONTROL_SIZE; i++) {
+                this.commandList.push(new NoCommand());
+            }
+        }
+        //设置按钮
+        ControlPanel.prototype.setCommand = function (index, command) {
+            this.commandList[index] = command;
+        };
+        //点击按钮
+        ControlPanel.prototype.keyPressed = function (index) {
+            this.commandList[index].Excute();
+        };
+        return ControlPanel;
+    }());
+    var control = new ControlPanel();
+    var light = new Light();
+    control.setCommand(0, new LightOffCommond(light));
+    control.setCommand(1, new LightOnCommond(light));
+    control.keyPressed(0);
+    control.keyPressed(1);
+    control.keyPressed(3);
+})(Command || (Command = {}));
 //# sourceMappingURL=DesignModel.js.map
