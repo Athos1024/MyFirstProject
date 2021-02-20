@@ -430,84 +430,45 @@ var Strategy;
     roleA.display();
     roleA.run();
 })(Strategy || (Strategy = {}));
-var Attack1 = /** @class */ (function () {
-    function Attack1() {
-    }
-    Attack1.prototype.attack = function () {
-        console.log('attack');
-    };
-    return Attack1;
-}());
-var Dispaly1 = /** @class */ (function () {
-    function Dispaly1() {
-    }
-    Dispaly1.prototype.display = function () {
-        console.log('display');
-    };
-    return Dispaly1;
-}());
-var Run1 = /** @class */ (function () {
-    function Run1() {
-    }
-    Run1.prototype.run = function () {
-        console.log('run');
-    };
-    return Run1;
-}());
-var Defend1 = /** @class */ (function () {
-    function Defend1() {
-    }
-    Defend1.prototype.defend = function () {
-        console.log('defend');
-    };
-    return Defend1;
-}());
-var Role = /** @class */ (function () {
-    function Role() {
-    }
-    Role.prototype.setAttackBeHavior = function (attackBehavior) {
-        this.attackBehavior = attackBehavior;
-        return this;
-    };
-    Role.prototype.setDefendBehavior = function (defendBehavior) {
-        this.defendBehavior = defendBehavior;
-        return this;
-    };
-    Role.prototype.setDisplayBehavior = function (displayBehavior) {
-        this.displayBehavior = displayBehavior;
-        return this;
-    };
-    Role.prototype.setRunBeHavior = function (runBehavior) {
-        this.runBehavior = runBehavior;
-        return this;
-    };
-    Role.prototype.run = function () {
-        this.runBehavior.run();
-    };
-    Role.prototype.display = function () {
-        this.displayBehavior.display();
-    };
-    Role.prototype.defend = function () {
-        this.defendBehavior.defend();
-    };
-    Role.prototype.attack = function () {
-        this.attackBehavior.attack();
-    };
-    return Role;
-}());
-var RoleA = /** @class */ (function (_super) {
-    __extends(RoleA, _super);
-    function RoleA(name) {
-        var _this = _super.call(this) || this;
-        _this.name = name;
-        return _this;
-    }
-    return RoleA;
-}(Role));
-var roleA = new RoleA("a");
-roleA.setDisplayBehavior(new Dispaly1()).setRunBeHavior(new Run1()).setDefendBehavior(new Defend1()).setAttackBeHavior(new Attack1());
-roleA.run();
-roleA.display();
-roleA.defend();
-roleA.attack();
+//**================== */
+//适配器模式
+var Adapter;
+(function (Adapter) {
+    //充电
+    var Mobile = /** @class */ (function () {
+        function Mobile() {
+        }
+        Mobile.prototype.inputPower = function (power) {
+            var provideV5Power = power.provideV5Power();
+            console.log('我需要5V电压充电' + provideV5Power);
+        };
+        return Mobile;
+    }());
+    //家用220V电压
+    var V220Power = /** @class */ (function () {
+        function V220Power() {
+        }
+        V220Power.prototype.provideV220Power = function () {
+            console.log('提供一个220V电压');
+            return 220;
+        };
+        return V220Power;
+    }());
+    //适配器，把220V电压变成5V
+    var V5PowerAdapter = /** @class */ (function () {
+        function V5PowerAdapter(V220Power) {
+            this.V220Power = V220Power;
+        }
+        V5PowerAdapter.prototype.provideV5Power = function () {
+            var power = this.V220Power.provideV220Power();
+            //power经过各种操作-->5
+            console.log('适配器：我悄悄的适配了电压');
+            return 5;
+        };
+        return V5PowerAdapter;
+    }());
+    var mobile = new Mobile();
+    var v5Power = new V5PowerAdapter(new V220Power());
+    mobile.inputPower(v5Power);
+})(Adapter || (Adapter = {}));
 //# sourceMappingURL=DesignModel.js.map

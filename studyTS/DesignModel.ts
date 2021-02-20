@@ -27,6 +27,8 @@ fun(A)
 
 //js.map是用来断点ts脚本
 
+//ctrl + i 补全
+
 
 //单列模式
 namespace singleton {
@@ -255,82 +257,82 @@ namespace Factory {
             draw(): void;
         }
 
-        class Rect implements Shape{
-            draw(){
+        class Rect implements Shape {
+            draw() {
                 console.log('draw Rect');
             }
         }
 
-        class Square implements Shape{
-            draw(){
+        class Square implements Shape {
+            draw() {
                 console.log('draw Square');
             }
         }
 
-        interface Color{
-            fill():void;
+        interface Color {
+            fill(): void;
         }
 
-        class Red implements Color{
-            fill(){
+        class Red implements Color {
+            fill() {
                 console.log('color red');
             }
         }
 
         class Greed implements Color {
-            fill(){
+            fill() {
                 console.log('color greed');
             }
         }
 
 
-        abstract class AbstractFactory{
-            abstract getColor(color:string):Color;
-            abstract getDraw(shap:string):Shape;
+        abstract class AbstractFactory {
+            abstract getColor(color: string): Color;
+            abstract getDraw(shap: string): Shape;
         }
-        
-        class shapeFactory extends AbstractFactory{
-            getColor(color:string):Color{
+
+        class shapeFactory extends AbstractFactory {
+            getColor(color: string): Color {
                 return null;
             }
 
-            getDraw(shap:string):Shape{
-                if(shap == null){
+            getDraw(shap: string): Shape {
+                if (shap == null) {
                     return null;
                 }
 
-                if(shap == "rect"){
+                if (shap == "rect") {
                     return new Rect();
-                }else if(shap == "square"){
+                } else if (shap == "square") {
                     return new Square();
                 }
             }
         }
 
         class ColorFactory extends AbstractFactory {
-            getColor(color:string):Color{
-                if(color == null){
+            getColor(color: string): Color {
+                if (color == null) {
                     return null;
                 }
 
-                if(color == "red"){
+                if (color == "red") {
                     return new Red();
-                }else if(color == "greed"){
+                } else if (color == "greed") {
                     return new Greed();
                 }
             }
 
-            getDraw(shap:string):Shape{
+            getDraw(shap: string): Shape {
                 return null;
             }
         }
 
 
-        class FactoryProducer{
-            public static getFactory(choice:string):AbstractFactory{
-                if(choice == "SHAPE"){
+        class FactoryProducer {
+            public static getFactory(choice: string): AbstractFactory {
+                if (choice == "SHAPE") {
                     return new shapeFactory();
-                }else if(choice == "COLOR"){
+                } else if (choice == "COLOR") {
                     return new ColorFactory();
                 }
                 return null;
@@ -338,7 +340,7 @@ namespace Factory {
         }
 
         let f1 = FactoryProducer.getFactory("SHAPE");
-        let shap:Shape = f1.getDraw("rect");
+        let shap: Shape = f1.getDraw("rect");
         shap.draw();
     }
 
@@ -354,109 +356,164 @@ namespace Factory {
 namespace Strategy {
 
     //攻击
-    interface IAttackBehavior{
-        attack():void;
+    interface IAttackBehavior {
+        attack(): void;
     }
 
     //防御
-    interface IDefendBehavior{
-        defend():void;
+    interface IDefendBehavior {
+        defend(): void;
     }
 
     //显示
-    interface IDisplayBehavior{
-        display():void;
+    interface IDisplayBehavior {
+        display(): void;
     }
 
     //逃跑
-    interface IRunBehavior{
-        run():void;
+    interface IRunBehavior {
+        run(): void;
     }
 
-    class AttackJYSG implements IAttackBehavior{
-        attack(){
+    class AttackJYSG implements IAttackBehavior {
+        attack() {
             console.log('九阳神功');
         }
     }
 
-    class DefendTBS implements IDefendBehavior{
-        defend(){
+    class DefendTBS implements IDefendBehavior {
+        defend() {
             console.log('贴布衫');
         }
     }
 
-    class DisplayYZ implements IDisplayBehavior{
-        display(){
+    class DisplayYZ implements IDisplayBehavior {
+        display() {
             console.log('样子');
         }
     }
 
-    class RunYWD implements IRunBehavior{
-        run(){
+    class RunYWD implements IRunBehavior {
+        run() {
             console.log('烟雾弹');
         }
     }
 
-    abstract class Role{
-        protected name:string;
+    abstract class Role {
+        protected name: string;
 
-        protected defendBehavior:IDefendBehavior;
-        protected attackBehavior:IAttackBehavior;
-        protected displayBeHavior:IDisplayBehavior;
-        protected runBehavior:IRunBehavior;
+        protected defendBehavior: IDefendBehavior;
+        protected attackBehavior: IAttackBehavior;
+        protected displayBeHavior: IDisplayBehavior;
+        protected runBehavior: IRunBehavior;
 
-        public setDefendBehavior(defendBehavior:IDefendBehavior):Role{
+        public setDefendBehavior(defendBehavior: IDefendBehavior): Role {
             this.defendBehavior = defendBehavior;
             return this;
         }
 
-        public setAttackBehavior(attackBehavior:IAttackBehavior):Role{
+        public setAttackBehavior(attackBehavior: IAttackBehavior): Role {
             this.attackBehavior = attackBehavior;
             return this;
         }
 
-        public setDisplayBehavior(displayBeHavior:IDisplayBehavior):Role{
+        public setDisplayBehavior(displayBeHavior: IDisplayBehavior): Role {
             this.displayBeHavior = displayBeHavior;
             return this;
         }
 
-        public setRunBehavior(runBehavior:IRunBehavior):Role{
+        public setRunBehavior(runBehavior: IRunBehavior): Role {
             this.runBehavior = runBehavior;
             return this;
         }
 
-        public defend():void{
+        public defend(): void {
             this.defendBehavior.defend();
         }
 
-        public attack():void{
+        public attack(): void {
             this.attackBehavior.attack();
         }
 
-        public display():void{
+        public display(): void {
             this.displayBeHavior.display();
         }
 
-        public run():void{
+        public run(): void {
             this.runBehavior.run();
         }
 
     }
 
-    class RoleA extends Role{
-        constructor(name:string){
+    class RoleA extends Role {
+        constructor(name: string) {
             super();
             this.name = name;
-        }           
+        }
     }
 
     let roleA = new RoleA("A");
     roleA.setAttackBehavior(new AttackJYSG())
-    .setDefendBehavior(new DefendTBS())
-    .setDisplayBehavior(new DisplayYZ())
-    .setRunBehavior(new RunYWD()); 
+        .setDefendBehavior(new DefendTBS())
+        .setDisplayBehavior(new DisplayYZ())
+        .setRunBehavior(new RunYWD());
     roleA.attack();
     roleA.defend();
     roleA.display();
     roleA.run();
 }
+
+
+//**================== */
+/**
+优点： 1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。
+
+缺点： 1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是
+ A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。
+ 因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，
+ 所以至多只能适配一个适配者类，而且目标类必须是抽象类。
+ */
+//适配器模式
+namespace Adapter {
+
+    //充电
+    class Mobile {
+        inputPower(power: IV5Power): void {
+            let provideV5Power = power.provideV5Power();
+            console.log('我需要5V电压充电' + provideV5Power);
+        }
+    }
+
+    //提供5V电压的一个接口
+    interface IV5Power {
+        provideV5Power(): number;
+    }
+
+    //家用220V电压
+    class V220Power{
+        public provideV220Power(){
+            console.log('提供一个220V电压');
+            return 220;
+        }
+    }
+
+    //适配器，把220V电压变成5V
+    class V5PowerAdapter implements IV5Power{
+        private V220Power:V220Power;
+        constructor(V220Power:V220Power){
+            this.V220Power = V220Power;
+        }
+        
+        provideV5Power(): number {
+            let power = this.V220Power.provideV220Power();
+            //power经过各种操作-->5
+            console.log('适配器：我悄悄的适配了电压');
+            return 5;
+        }
+    }
+
+    let mobile = new Mobile();
+    let v5Power = new V5PowerAdapter(new V220Power());
+    mobile.inputPower(v5Power);
+}
+
