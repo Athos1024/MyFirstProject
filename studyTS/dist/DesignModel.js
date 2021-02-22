@@ -38,6 +38,12 @@ fun(A);
 //删除对象属性可以用delete
 //js.map是用来断点ts脚本
 //ctrl + i 补全
+/**
+ * js继承 就是通关 for in
+ *for(let key in clsA){
+    let clsB[key] = clsA[key];
+ }
+ */
 //单列模式
 var singleton;
 (function (singleton) {
@@ -603,7 +609,7 @@ var decorator;
         };
         return RingEquip;
     }());
-    //蓝宝石
+    //具体装饰类  蓝宝石
     var BlueGemDrcorator = /** @class */ (function () {
         function BlueGemDrcorator(equip) {
             this.equip = equip;
@@ -616,7 +622,7 @@ var decorator;
         };
         return BlueGemDrcorator;
     }());
-    //黄宝石
+    //具体装饰类   黄宝石
     var YellowGemDrocorator = /** @class */ (function () {
         function YellowGemDrocorator(equip) {
             this.equip = equip;
@@ -633,4 +639,199 @@ var decorator;
     console.log(equip.CalculateAttack());
     console.log(equip.Des());
 })(decorator || (decorator = {}));
+//===================================//
+/**
+优点： 1、减少系统相互依赖。 2、提高灵活性。 3、提高了安全性。
+缺点：不符合开闭原则，如果要改东西很麻烦，继承重写都不合适。
+ */
+//外观模式
+var Facade;
+(function (Facade) {
+    var Computer = /** @class */ (function () {
+        function Computer() {
+        }
+        Computer.prototype.on = function () { };
+        ;
+        Computer.prototype.off = function () { };
+        ;
+        return Computer;
+    }());
+    var Light = /** @class */ (function () {
+        function Light() {
+        }
+        Light.prototype.on = function () { };
+        ;
+        Light.prototype.off = function () { };
+        ;
+        return Light;
+    }());
+    var Video = /** @class */ (function () {
+        function Video() {
+        }
+        Video.prototype.play = function () { };
+        ;
+        Video.prototype.close = function () { };
+        ;
+        return Video;
+    }());
+    var HomeTheaterFacade = /** @class */ (function () {
+        function HomeTheaterFacade(c, l, v) {
+            this._computer = c;
+            this._light = l;
+            this._video = v;
+        }
+        HomeTheaterFacade.prototype.watchMovide = function () {
+            this._computer.on();
+            this._light.on();
+            this._video.play();
+        };
+        HomeTheaterFacade.prototype.stopMovie = function () {
+            this._computer.off();
+            this._light.off();
+            this._video.close();
+        };
+        return HomeTheaterFacade;
+    }());
+})(Facade || (Facade = {}));
+//=======================================
+/**
+优点： 1、封装不变部分，扩展可变部分。 2、提取公共代码，便于维护。 3、行为由父类控制，子类实现。
+缺点：每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。
+ */
+//模板模式
+var Template;
+(function (Template) {
+    var Worker = /** @class */ (function () {
+        function Worker(name) {
+            this._name = name;
+        }
+        Object.defineProperty(Worker.prototype, "IsNeedPrintDate", {
+            get: function () {
+                return false;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Worker.prototype.workOneDay = function () {
+            console.log('--------------work start-----------------');
+            this.enterCompany();
+            this.computerOn();
+            this.computerOff();
+            this.exitCompany();
+            if (this.IsNeedPrintDate) {
+                console.log(new Date().getTime());
+            }
+            console.log('--------------work end-----------------');
+        };
+        //关闭电脑
+        Worker.prototype.computerOff = function () {
+            console.log(this._name + "关闭电脑");
+        };
+        Worker.prototype.computerOn = function () {
+            console.log(this._name + "开启电脑");
+        };
+        Worker.prototype.enterCompany = function () {
+            console.log(this._name + "进入公司");
+        };
+        Worker.prototype.exitCompany = function () {
+            console.log(this._name + "离开公司");
+        };
+        return Worker;
+    }());
+    var HRWorker = /** @class */ (function (_super) {
+        __extends(HRWorker, _super);
+        function HRWorker() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(HRWorker.prototype, "IsNeedPrintDate", {
+            get: function () {
+                return true;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        HRWorker.prototype.work = function () {
+            console.log(this._name + '看简历->打电话->接电话');
+        };
+        return HRWorker;
+    }(Worker));
+    var ITWorker = /** @class */ (function (_super) {
+        __extends(ITWorker, _super);
+        function ITWorker() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        ITWorker.prototype.work = function () {
+            console.log(this._name + "写代码->deBug->fix bug");
+        };
+        return ITWorker;
+    }(Worker));
+    var HR = new HRWorker("a君");
+    HR.workOneDay();
+    var IT = new ITWorker("b君");
+    IT.workOneDay();
+})(Template || (Template = {}));
+var Worker996 = /** @class */ (function () {
+    function Worker996(name) {
+        this._anme = name;
+    }
+    Worker996.prototype.showOnyDay = function () {
+        console.log('-------------start work------------');
+        this.enterCompany();
+        this.openComputer();
+        this.work();
+        this.closeComputer();
+        this.exitCompany();
+        if (this.isNeedPrintData) {
+            console.log(new Date().getTime());
+        }
+        console.log('-------------end workd-------------');
+    };
+    Worker996.prototype.openComputer = function () {
+        console.log(this._anme + '开启电脑');
+    };
+    Worker996.prototype.closeComputer = function () {
+        console.log(this._anme + '关闭电脑');
+    };
+    Worker996.prototype.enterCompany = function () {
+        console.log(this._anme + '进入公司');
+    };
+    Worker996.prototype.exitCompany = function () {
+        console.log(this._anme + '离开公司');
+    };
+    Object.defineProperty(Worker996.prototype, "isNeedPrintData", {
+        get: function () {
+            return false;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Worker996;
+}());
+var ITWorker = /** @class */ (function (_super) {
+    __extends(ITWorker, _super);
+    function ITWorker() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ITWorker.prototype.work = function () {
+        console.log('write code-> debug-> fix bug');
+    };
+    Object.defineProperty(ITWorker.prototype, "isNeedPrintData", {
+        get: function () {
+            return true;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return ITWorker;
+}(Worker996));
+var HRWorker = /** @class */ (function (_super) {
+    __extends(HRWorker, _super);
+    function HRWorker() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    HRWorker.prototype.work = function () {
+        console.log('看简历->打电话->接电话');
+    };
+    return HRWorker;
+}(Worker996));
 //# sourceMappingURL=DesignModel.js.map
