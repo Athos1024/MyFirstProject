@@ -31,7 +31,7 @@ fun(A);
  */
 /**
  * interface 和 abstract
- * interface 没有访问修饰符，没有函数体,用implements。interface 就是特效的abstract
+ * interface 没有访问修饰符，没有函数体,用implements。interface 就是特效的abstract 接口继承接口用 extends
  * abstract 可以抽象成员和方法，抽象方法没有函数体，子类必须实现
  */
 //ts删除可以用 null
@@ -120,222 +120,213 @@ var observer;
 //==================================//
 //工厂模式
 /**
+工厂模式
 优点： 1、一个调用者想创建一个对象，只要知道其名称就可以了。 2、扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。 3、屏蔽产品的具体实现，调用者只关心产品的接口。
 缺点：每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。
- */
+抽象工厂
+优点：当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。
+缺点：产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。
+*/
 var Factory;
 (function (Factory_1) {
-    // 1、静态工厂模式
-    // 这个最常见了，项目中的辅助类，TextUtil.isEmpty等，类+静态方法。下面开始详细介绍：略。
-    var RouJiaMo = /** @class */ (function () {
-        function RouJiaMo() {
+    //加
+    var Add = /** @class */ (function () {
+        function Add() {
         }
-        //准备工作
-        RouJiaMo.prototype.prepare = function () {
-            console.log('揉面-剁肉-完成准备工作');
+        Add.prototype.operation = function (num1, num2) {
+            return num1 + num2;
         };
-        //使用你们的专用袋-包装
-        RouJiaMo.prototype.pack = function () {
-            console.log('肉夹馍-专用袋-包装');
-        };
-        //秘制设备-烘烤2分钟
-        RouJiaMo.prototype.fire = function () {
-            console.log('若夹馍·专用设备-烘烤');
-        };
-        return RouJiaMo;
+        return Add;
     }());
-    //酸味肉夹馍
-    var SuanRouJiaMo = /** @class */ (function (_super) {
-        __extends(SuanRouJiaMo, _super);
-        function SuanRouJiaMo() {
-            var _this = _super.call(this) || this;
-            _this._name = "酸味肉夹馍";
-            return _this;
+    //减
+    var Sub = /** @class */ (function () {
+        function Sub() {
         }
-        return SuanRouJiaMo;
-    }(RouJiaMo));
-    //辣味肉夹馍
-    var LaRouJiaMo = /** @class */ (function (_super) {
-        __extends(LaRouJiaMo, _super);
-        function LaRouJiaMo() {
-            var _this = _super.call(this) || this;
-            _this._name = "辣味肉夹馍";
-            return _this;
+        Sub.prototype.operation = function (num1, num2) {
+            return num1 - num2;
+        };
+        return Sub;
+    }());
+    //乘
+    var Mul = /** @class */ (function () {
+        function Mul() {
         }
-        return LaRouJiaMo;
-    }(RouJiaMo));
-    //简单工厂
+        Mul.prototype.operation = function (num1, num2) {
+            return num1 * num2;
+        };
+        return Mul;
+    }());
+    //除
+    var Div = /** @class */ (function () {
+        function Div() {
+        }
+        Div.prototype.operation = function (num1, num2) {
+            return num1 / num2;
+        };
+        return Div;
+    }());
+    //简单工厂模式
+    /**
+    //优点
+    把具体产品的类型从客户端中解耦出来，通过工厂获取具体产品
+    即便服务端修该了具体实现类的信息，客户端是不知道的，更符合`面向接口编程`的思想
+    //缺点
+    如果具体的产品过多，那么简单工厂会非常臃肿
+    当客户端需要扩展产品时，需要修改服务端简单工厂的代码，这样违背了“开闭原则”
+     */
     var Factory;
     (function (Factory) {
         var a;
         (function (a) {
-            var SimpleRouJiaMoFactory = /** @class */ (function () {
-                function SimpleRouJiaMoFactory() {
+            // 简单工厂
+            var OperationFactory = /** @class */ (function () {
+                function OperationFactory() {
                 }
-                SimpleRouJiaMoFactory.prototype.createRouJiaMo = function (type) {
-                    var roujiamo = null;
-                    if (type == "Suan") {
-                        roujiamo = new SuanRouJiaMo();
+                OperationFactory.Operation = function (name) {
+                    var operation = null;
+                    switch (name) {
+                        case "+":
+                            operation = new Add();
+                            break;
+                        case "-":
+                            operation = new Sub();
+                            break;
+                        case "*":
+                            operation = new Mul();
+                            break;
+                        case "/":
+                            operation = new Div();
+                            break;
                     }
-                    else if (type == "La") {
-                        roujiamo = new LaRouJiaMo();
-                    }
-                    return roujiamo;
+                    return operation;
                 };
-                return SimpleRouJiaMoFactory;
+                return OperationFactory;
             }());
-            var RoujiamoStore = /** @class */ (function () {
-                function RoujiamoStore(factory) {
-                    this.factory = factory;
-                }
-                //根据传入类型卖不同的肉夹馍
-                RoujiamoStore.prototype.sellRouJiaMo = function (type) {
-                    var roujiamo = this.factory.createRouJiaMo(type);
-                    roujiamo.prepare();
-                    roujiamo.fire();
-                    roujiamo.pack();
-                    return roujiamo;
-                };
-                return RoujiamoStore;
-            }());
+            var add = OperationFactory.Operation("+");
+            add.operation(1, 2);
+            var sub = OperationFactory.Operation("-");
+            sub.operation(2, 1);
         })(a = Factory.a || (Factory.a = {}));
     })(Factory || (Factory = {}));
-    //工厂方法
+    /**
+    //优点
+    当客户端需要扩展一个新产品时，不需要修改服务端的代码，而是直接扩展一个工厂而已
+    //缺点
+    如果有多个产品等级（如：运算，比较...），那么工厂类的数量会增长很块
+     */
     (function (Factory) {
         var b;
         (function (b) {
-            var RoujiaMoStore = /** @class */ (function () {
-                function RoujiaMoStore() {
+            //加法工厂
+            var AddFactory = /** @class */ (function () {
+                function AddFactory() {
                 }
-                //根据传入类型卖不同的肉夹馍
-                RoujiaMoStore.prototype.sellRouJiaMo = function (type) {
-                    var roujiamo = this.createRouJiaMo(type);
-                    roujiamo.prepare();
-                    roujiamo.fire();
-                    roujiamo.pack();
-                    return roujiamo;
+                AddFactory.prototype.GetOperation = function () {
+                    return new Add();
                 };
-                return RoujiaMoStore;
+                return AddFactory;
             }());
-            var XianRouJiaMoStore = /** @class */ (function (_super) {
-                __extends(XianRouJiaMoStore, _super);
-                function XianRouJiaMoStore() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+            //减法工厂
+            var SubFactory = /** @class */ (function () {
+                function SubFactory() {
                 }
-                XianRouJiaMoStore.prototype.createRouJiaMo = function (type) {
-                    var roujiamo = null;
-                    if (type == "Suan") {
-                        roujiamo = new SuanRouJiaMo();
-                    }
-                    else if (type == "La") {
-                        roujiamo = new LaRouJiaMo();
-                    }
-                    return roujiamo;
+                SubFactory.prototype.GetOperation = function () {
+                    return new Sub();
                 };
-                return XianRouJiaMoStore;
-            }(RoujiaMoStore));
+                return SubFactory;
+            }());
+            //乘法工厂
+            var MulFactory = /** @class */ (function () {
+                function MulFactory() {
+                }
+                MulFactory.prototype.GetOperation = function () {
+                    return new Mul();
+                };
+                return MulFactory;
+            }());
+            //除法工厂
+            var DivFactory = /** @class */ (function () {
+                function DivFactory() {
+                }
+                DivFactory.prototype.GetOperation = function () {
+                    return new Div();
+                };
+                return DivFactory;
+            }());
+            var operationFactory = new AddFactory();
+            var add = operationFactory.GetOperation();
+            add.operation(1, 2);
+            //自定义产品
+            var AddAndSub = /** @class */ (function () {
+                function AddAndSub() {
+                }
+                AddAndSub.prototype.operation = function (num1, num2) {
+                    return (num1 + num2) - num2;
+                };
+                return AddAndSub;
+            }());
+            //自定义工厂
+            var AddAndSubFactory = /** @class */ (function () {
+                function AddAndSubFactory() {
+                }
+                AddAndSubFactory.prototype.GetOperation = function () {
+                    return new AddAndSub();
+                };
+                return AddAndSubFactory;
+            }());
+            //客户端添加新功能
+            operationFactory = new AddAndSubFactory();
+            var addAndSub = operationFactory.GetOperation();
+            addAndSub.operation(5, 2);
         })(b = Factory.b || (Factory.b = {}));
     })(Factory || (Factory = {}));
-    //抽象工厂模式
+    //抽象工厂
     (function (Factory) {
         var c;
         (function (c) {
-            var Rect = /** @class */ (function () {
-                function Rect() {
+            //大于0比较
+            var GreaterThanZero = /** @class */ (function () {
+                function GreaterThanZero() {
                 }
-                Rect.prototype.draw = function () {
-                    console.log('draw Rect');
+                GreaterThanZero.prototype.compare = function (num) {
+                    return num > 0;
                 };
-                return Rect;
+                return GreaterThanZero;
             }());
-            var Square = /** @class */ (function () {
-                function Square() {
+            // 小于0比较
+            var LessThanZero = /** @class */ (function () {
+                function LessThanZero() {
                 }
-                Square.prototype.draw = function () {
-                    console.log('draw Square');
+                LessThanZero.prototype.compare = function (num) {
+                    return num < 0;
                 };
-                return Square;
+                return LessThanZero;
             }());
-            var Red = /** @class */ (function () {
-                function Red() {
+            var AddAndCompareFactory = /** @class */ (function () {
+                function AddAndCompareFactory() {
                 }
-                Red.prototype.fill = function () {
-                    console.log('color red');
+                AddAndCompareFactory.prototype.getOperation = function () {
+                    return new Add();
                 };
-                return Red;
+                AddAndCompareFactory.prototype.getCompare = function () {
+                    return new GreaterThanZero();
+                };
+                return AddAndCompareFactory;
             }());
-            var Greed = /** @class */ (function () {
-                function Greed() {
+            var SubAndCompareFactory = /** @class */ (function () {
+                function SubAndCompareFactory() {
                 }
-                Greed.prototype.fill = function () {
-                    console.log('color greed');
+                SubAndCompareFactory.prototype.getOperation = function () {
+                    return new Sub();
                 };
-                return Greed;
+                SubAndCompareFactory.prototype.getCompare = function () {
+                    return new LessThanZero();
+                };
+                return SubAndCompareFactory;
             }());
-            var AbstractFactory = /** @class */ (function () {
-                function AbstractFactory() {
-                }
-                return AbstractFactory;
-            }());
-            var shapeFactory = /** @class */ (function (_super) {
-                __extends(shapeFactory, _super);
-                function shapeFactory() {
-                    return _super !== null && _super.apply(this, arguments) || this;
-                }
-                shapeFactory.prototype.getColor = function (color) {
-                    return null;
-                };
-                shapeFactory.prototype.getDraw = function (shap) {
-                    if (shap == null) {
-                        return null;
-                    }
-                    if (shap == "rect") {
-                        return new Rect();
-                    }
-                    else if (shap == "square") {
-                        return new Square();
-                    }
-                };
-                return shapeFactory;
-            }(AbstractFactory));
-            var ColorFactory = /** @class */ (function (_super) {
-                __extends(ColorFactory, _super);
-                function ColorFactory() {
-                    return _super !== null && _super.apply(this, arguments) || this;
-                }
-                ColorFactory.prototype.getColor = function (color) {
-                    if (color == null) {
-                        return null;
-                    }
-                    if (color == "red") {
-                        return new Red();
-                    }
-                    else if (color == "greed") {
-                        return new Greed();
-                    }
-                };
-                ColorFactory.prototype.getDraw = function (shap) {
-                    return null;
-                };
-                return ColorFactory;
-            }(AbstractFactory));
-            var FactoryProducer = /** @class */ (function () {
-                function FactoryProducer() {
-                }
-                FactoryProducer.getFactory = function (choice) {
-                    if (choice == "SHAPE") {
-                        return new shapeFactory();
-                    }
-                    else if (choice == "COLOR") {
-                        return new ColorFactory();
-                    }
-                    return null;
-                };
-                return FactoryProducer;
-            }());
-            var f1 = FactoryProducer.getFactory("SHAPE");
-            var shap = f1.getDraw("rect");
-            shap.draw();
+            var addAndCompareFactory = new AddAndCompareFactory();
+            var add = addAndCompareFactory.getOperation();
+            var addRes = add.operation(1, 2);
         })(c = Factory.c || (Factory.c = {}));
     })(Factory || (Factory = {}));
 })(Factory || (Factory = {}));
@@ -481,6 +472,10 @@ var Adapter;
     mobile.inputPower(v5Power);
 })(Adapter || (Adapter = {}));
 //==================================
+/**
+优点： 1、降低了系统耦合度。 2、新的命令可以很容易添加到系统中去。
+缺点：使用命令模式可能会导致某些系统有过多的具体命令类。
+ */
 //命令模式
 var Command;
 (function (Command) {
@@ -560,5 +555,82 @@ var Command;
     control.keyPressed(0);
     control.keyPressed(1);
     control.keyPressed(3);
+    //定义一个命令，可以用于一系列的事情
+    var QueueCommand = /** @class */ (function () {
+        function QueueCommand(commandList) {
+            this.commandList = commandList;
+        }
+        QueueCommand.prototype.Excute = function () {
+            for (var i = 0; i < this.commandList.length; i++) {
+                var element = this.commandList[i];
+                element.Excute();
+            }
+        };
+        return QueueCommand;
+    }());
+    var queuqCommand = new QueueCommand([new LightOffCommond(light), new LightOnCommond(light)]);
+    queuqCommand.Excute();
 })(Command || (Command = {}));
+//=======================================
+/**
+优点：装饰类和被装饰类可以独立发展，不会相互耦合，装饰模式是继承的一个替代模式，装饰模式可以动态扩展一个实现类的功能。
+缺点：多层装饰比较复杂。
+ */
+//装饰器
+var decorator;
+(function (decorator) {
+    //武器
+    var ArmEquip = /** @class */ (function () {
+        function ArmEquip() {
+        }
+        ArmEquip.prototype.CalculateAttack = function () {
+            return 20;
+        };
+        ArmEquip.prototype.Des = function () {
+            return "屠龙刀";
+        };
+        return ArmEquip;
+    }());
+    //戒指
+    var RingEquip = /** @class */ (function () {
+        function RingEquip() {
+        }
+        RingEquip.prototype.CalculateAttack = function () {
+            return 5;
+        };
+        RingEquip.prototype.Des = function () {
+            return "圣戒";
+        };
+        return RingEquip;
+    }());
+    //蓝宝石
+    var BlueGemDrcorator = /** @class */ (function () {
+        function BlueGemDrcorator(equip) {
+            this.equip = equip;
+        }
+        BlueGemDrcorator.prototype.CalculateAttack = function () {
+            return 5 + this.equip.CalculateAttack();
+        };
+        BlueGemDrcorator.prototype.Des = function () {
+            return this.equip.Des() + "+ 蓝宝石";
+        };
+        return BlueGemDrcorator;
+    }());
+    //黄宝石
+    var YellowGemDrocorator = /** @class */ (function () {
+        function YellowGemDrocorator(equip) {
+            this.equip = equip;
+        }
+        YellowGemDrocorator.prototype.CalculateAttack = function () {
+            return 10 + this.equip.CalculateAttack();
+        };
+        YellowGemDrocorator.prototype.Des = function () {
+            return this.equip.Des() + "+ 黄宝石";
+        };
+        return YellowGemDrocorator;
+    }());
+    var equip = new YellowGemDrocorator(new BlueGemDrcorator(new ArmEquip()));
+    console.log(equip.CalculateAttack());
+    console.log(equip.Des());
+})(decorator || (decorator = {}));
 //# sourceMappingURL=DesignModel.js.map
