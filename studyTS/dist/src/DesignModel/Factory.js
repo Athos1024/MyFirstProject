@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Factory = void 0;
 //工厂模式
 /**
 工厂模式
@@ -273,5 +276,5 @@ var Factory;
         return Cline;
     }());
     Factory_1.Cline = Cline;
-})(Factory || (Factory = {}));
+})(Factory = exports.Factory || (exports.Factory = {}));
 //# sourceMappingURL=Factory.js.map
