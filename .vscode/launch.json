@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\studyTS\\DesignModel.ts",
+            "program": "${workspaceFolder}\\studyTS\\src\\testScript.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
