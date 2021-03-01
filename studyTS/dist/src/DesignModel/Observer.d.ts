@@ -4,4 +4,7 @@
  */
 declare namespace observer {
 }
+<<<<<<< HEAD
 //# sourceMappingURL=Observer.d.ts.map
+=======
+>>>>>>> main

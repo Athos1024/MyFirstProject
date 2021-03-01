@@ -8,4 +8,7 @@
  */
 export declare namespace Adapter {
 }
+<<<<<<< HEAD
 //# sourceMappingURL=Adapter.d.ts.map
+=======
+>>>>>>> main

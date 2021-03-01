@@ -7,6 +7,7 @@
 缺点：产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。
 */
 export declare namespace Factory {
+<<<<<<< HEAD
     namespace a {
         class FactoryDeme {
             cline(): void;
@@ -16,3 +17,9 @@ export declare namespace Factory {
     }
 }
 //# sourceMappingURL=Factory.d.ts.map
+=======
+    class Cline {
+        mian(): void;
+    }
+}
+>>>>>>> main

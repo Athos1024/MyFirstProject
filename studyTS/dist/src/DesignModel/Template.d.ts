@@ -4,4 +4,7 @@
  */
 declare namespace Template {
 }
+<<<<<<< HEAD
 //# sourceMappingURL=Template.d.ts.map
+=======
+>>>>>>> main

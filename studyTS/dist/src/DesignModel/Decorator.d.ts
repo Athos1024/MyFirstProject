@@ -4,4 +4,7 @@
  */
 declare namespace decorator {
 }
+<<<<<<< HEAD
 //# sourceMappingURL=Decorator.d.ts.map
+=======
+>>>>>>> main

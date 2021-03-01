@@ -4,4 +4,7 @@
  */
 declare namespace Command {
 }
+<<<<<<< HEAD
 //# sourceMappingURL=Command.d.ts.map
+=======
+>>>>>>> main

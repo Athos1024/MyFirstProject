@@ -83,11 +83,30 @@ var Factory;
         var Square = /** @class */ (function () {
             function Square() {
             }
+<<<<<<< HEAD
             Square.prototype.draw = function () {
                 console.log('画一个方形');
             };
             return Square;
         }());
     })(b = Factory.b || (Factory.b = {}));
+=======
+            return chart;
+        };
+        return ChartFactory;
+    }());
+    //客户端代码
+    var Cline = /** @class */ (function () {
+        function Cline() {
+        }
+        Cline.prototype.mian = function () {
+            var chart;
+            chart = ChartFactory.getChart("pie");
+            chart.display();
+        };
+        return Cline;
+    }());
+    Factory_1.Cline = Cline;
+>>>>>>> main
 })(Factory = exports.Factory || (exports.Factory = {}));
 //# sourceMappingURL=Factory.js.map

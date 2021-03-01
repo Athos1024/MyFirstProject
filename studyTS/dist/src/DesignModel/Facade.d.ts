@@ -4,4 +4,7 @@
  */
 declare namespace Facade {
 }
+<<<<<<< HEAD
 //# sourceMappingURL=Facade.d.ts.map
+=======
+>>>>>>> main
