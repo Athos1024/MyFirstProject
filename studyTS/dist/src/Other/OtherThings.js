@@ -33,4 +33,8 @@ fun(A);
     let clsB[key] = clsA[key];
  }
  */
+// 1、./是当前目录
+// 2、../是父级目录
+// 3、/是根目录
+//"./**/*"
 //# sourceMappingURL=OtherThings.js.map
