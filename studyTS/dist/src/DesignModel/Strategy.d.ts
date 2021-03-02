@@ -4,7 +4,4 @@
  */
 declare namespace Strategy {
 }
-<<<<<<< HEAD
 //# sourceMappingURL=Strategy.d.ts.map
-=======
->>>>>>> main

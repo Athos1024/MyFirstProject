@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"version":3,"file":"testScript.js","sourceRoot":"","sources":["../../src/testScript.ts"],"names":[],"mappings":""}
-=======
-{"version":3,"file":"testScript.js","sourceRoot":"","sources":["../../src/testScript.ts"],"names":[],"mappings":"AAAA,WAAW;AAEX,sBAAsB;AACtB,wBAAwB;AACxB,2BAA2B;AAC3B,QAAQ;AAER,mBAAmB;AACnB,8CAA8C;AAC9C,yBAAyB;AACzB,oCAAoC;AACpC,YAAY;AACZ,4BAA4B;AAC5B,oCAAoC;AACpC,YAAY;AACZ,QAAQ;AAER,mBAAmB;AACnB,uCAAuC;AACvC,yBAAyB;AACzB,oCAAoC;AACpC,YAAY;AACZ,4BAA4B;AAC5B,oCAAoC;AACpC,YAAY;AACZ,QAAQ;AAER,mBAAmB;AACnB,wCAAwC;AACxC,yBAAyB;AACzB,oCAAoC;AACpC,YAAY;AAEZ,4BAA4B;AAC5B,oCAAoC;AAEpC,YAAY;AACZ,QAAQ;AAER,kBAAkB;AAClB,2BAA2B;AAC3B,qDAAqD;AACrD,sCAAsC;AACtC,uCAAuC;AACvC,gDAAgD;AAChD,8CAA8C;AAC9C,uCAAuC;AACvC,0CAA0C;AAC1C,4CAA4C;AAC5C,wCAAwC;AACxC,2CAA2C;AAC3C,4CAA4C;AAC5C,gBAAgB;AAChB,4BAA4B;AAC5B,YAAY;AACZ,QAAQ;AAGR,cAAc;AACd,0BAA0B;AAC1B,8BAA8B;AAC9B,+BAA+B;AAC/B,oDAAoD;AACpD,+BAA+B;AAC/B,YAAY;AACZ,QAAQ;AAER,2BAA2B;AAC3B,eAAe;AAGf,wCAAwC"}
->>>>>>> main
+{"version":3,"file":"testScript.js","sourceRoot":"","sources":["../../src/testScript.ts"],"names":[],"mappings":";;AAAA,qDAAoD;AAEpD,qBAAS,CAAC,aAAa,CAAC,MAAM,EAAE,CAAA"}

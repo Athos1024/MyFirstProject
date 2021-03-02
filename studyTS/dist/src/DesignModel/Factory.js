@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Factory = void 0;
 //工厂模式
@@ -54,19 +67,19 @@ var Factory;
             };
             return ShapeFactory;
         }());
-        var FactoryDeme = /** @class */ (function () {
-            function FactoryDeme() {
+        var FactoryDemo = /** @class */ (function () {
+            function FactoryDemo() {
             }
-            FactoryDeme.prototype.cline = function () {
+            FactoryDemo.cline = function () {
                 var factory = new ShapeFactory();
                 var s = factory.getShape("rectangle");
                 s.draw();
                 s = factory.getShape("square");
                 s.draw();
             };
-            return FactoryDeme;
+            return FactoryDemo;
         }());
-        a.FactoryDeme = FactoryDeme;
+        a.FactoryDemo = FactoryDemo;
     })(a = Factory.a || (Factory.a = {}));
     //抽象工厂
     var b;
@@ -83,30 +96,100 @@ var Factory;
         var Square = /** @class */ (function () {
             function Square() {
             }
-<<<<<<< HEAD
             Square.prototype.draw = function () {
                 console.log('画一个方形');
             };
             return Square;
         }());
+        //产品实现类：红色
+        var Red = /** @class */ (function () {
+            function Red() {
+            }
+            Red.prototype.fill = function () {
+                console.log('涂满红色');
+            };
+            return Red;
+        }());
+        //产品实现类：蓝色
+        var Bule = /** @class */ (function () {
+            function Bule() {
+            }
+            Bule.prototype.fill = function () {
+                console.log('涂满蓝色');
+            };
+            return Bule;
+        }());
+        //为color和shape对象抽类来获取工厂
+        var AbstractShape = /** @class */ (function () {
+            function AbstractShape() {
+            }
+            return AbstractShape;
+        }());
+        //创建一个shape工厂
+        var ShapeFactory = /** @class */ (function (_super) {
+            __extends(ShapeFactory, _super);
+            function ShapeFactory() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            ShapeFactory.prototype.getColor = function () {
+                return null;
+            };
+            ShapeFactory.prototype.getShape = function (shapeType) {
+                if (shapeType == "square") {
+                    return new Square();
+                }
+                else if (shapeType == "rectangle") {
+                    return new Rectangle();
+                }
+                return null;
+            };
+            return ShapeFactory;
+        }(AbstractShape));
+        //创建一个color工厂        
+        var ColorFactory = /** @class */ (function (_super) {
+            __extends(ColorFactory, _super);
+            function ColorFactory() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            ColorFactory.prototype.getColor = function (color) {
+                if (color == "red") {
+                    return new Red();
+                }
+                else if (color == "buld") {
+                    return new Bule();
+                }
+            };
+            ColorFactory.prototype.getShape = function (shape) {
+                return null;
+            };
+            return ColorFactory;
+        }(AbstractShape));
+        //工厂创建器，来获取工厂
+        var FactoryProducer = /** @class */ (function () {
+            function FactoryProducer() {
+            }
+            FactoryProducer.getFactory = function (choice) {
+                if (choice == "shape") {
+                    return new ShapeFactory();
+                }
+                else if (choice == "color") {
+                    return new ColorFactory();
+                }
+                return null;
+            };
+            return FactoryProducer;
+        }());
+        var FactoryDemo = /** @class */ (function () {
+            function FactoryDemo() {
+            }
+            FactoryDemo.client = function () {
+                var sFactory = FactoryProducer.getFactory("shape");
+                var s = sFactory.getShape("square");
+                s.draw();
+            };
+            return FactoryDemo;
+        }());
+        b.FactoryDemo = FactoryDemo;
     })(b = Factory.b || (Factory.b = {}));
-=======
-            return chart;
-        };
-        return ChartFactory;
-    }());
-    //客户端代码
-    var Cline = /** @class */ (function () {
-        function Cline() {
-        }
-        Cline.prototype.mian = function () {
-            var chart;
-            chart = ChartFactory.getChart("pie");
-            chart.display();
-        };
-        return Cline;
-    }());
-    Factory_1.Cline = Cline;
->>>>>>> main
 })(Factory = exports.Factory || (exports.Factory = {}));
 //# sourceMappingURL=Factory.js.map

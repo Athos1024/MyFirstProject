@@ -15,5 +15,6 @@ namespace singleton {
             return Toast.instance;
         }
     }
-
 }
+
+

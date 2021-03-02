@@ -73,5 +73,57 @@ namespace decorator {
     let equip: IEquip = new YellowGemDrocorator(new BlueGemDrcorator(new ArmEquip()));
     console.log(equip.CalculateAttack());
     console.log(equip.Des());
+
+
+    //形状接口
+    interface Shape{
+        draw():void;
+    }
+
+    //形状实现类 矩形
+    class Rectangle implements Shape{
+        draw(): void {
+            console.log('形状  矩形');
+        }
+
+    }
+
+    //形状实现类 圆形
+    class Circle implements Shape{
+        draw(): void {
+            console.log('形状 圆形');
+        }
+    }
+
+    //抽象装饰器
+    abstract class ShapeDecorator implements Shape{
+        protected decoratorShape:Shape;
+        constructor(shape:Shape){
+            this.decoratorShape = shape;
+        }
+
+        draw(): void {
+            this.decoratorShape.draw();
+        }
+    }
+
+    //实现装饰器
+    class RedShapeDecorator extends ShapeDecorator{
+        constructor(shape:Shape){
+            super(shape);
+        }
+
+        draw():void{
+            this.decoratorShape.draw();
+            this.setRedBorder(this.decoratorShape);
+        }
+
+        private setRedBorder(decorteShape:Shape):void{
+            console.log('border color red');
+            
+        }
+    }
+
+
 }
 

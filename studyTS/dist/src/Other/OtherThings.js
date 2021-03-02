@@ -2,7 +2,6 @@
 //https://www.yiibai.com/design_pattern/abstract_factory_pattern.html
 //https://www.runoob.com/design-pattern/builder-pattern.html
 //https://blog.csdn.net/LoveLion/article/details/17517213?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161408239716780255244847%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=161408239716780255244847&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~hot_rank-2-17517213.first_rank_v2_pc_rank_v29&utm_term=%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F
-//https://blog.csdn.net/SpringDou/article/details/108059875?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control&dist_request_id=03366204-17f5-44ec-96ce-c766ddc896d6&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control
 //传入类名
 var A = /** @class */ (function () {
     function A() {
@@ -37,4 +36,5 @@ fun(A);
 // 2、../是父级目录
 // 3、/是根目录
 //"./**/*"
+//export default就是输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。所以，下面的写法是有效的。
 //# sourceMappingURL=OtherThings.js.map

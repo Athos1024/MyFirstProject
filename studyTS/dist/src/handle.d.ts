@@ -14,7 +14,4 @@ declare class Handler {
     static _pool: Handler[];
     static _gid: number;
 }
-<<<<<<< HEAD
 //# sourceMappingURL=handle.d.ts.map
-=======
->>>>>>> main

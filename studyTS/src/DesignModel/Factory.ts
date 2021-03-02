@@ -9,7 +9,6 @@
 缺点：产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。 
 */
 export namespace Factory {
-<<<<<<< HEAD
     //简单工厂
     export namespace a {
         /**
@@ -17,8 +16,6 @@ export namespace Factory {
         缺点：每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。
           * 
           */
-=======
->>>>>>> main
 
 
         //商品接口
@@ -42,7 +39,7 @@ export namespace Factory {
 
         //形状工厂
         class ShapeFactory {
-            public getShape(shapeType:string):IShape{
+            public  getShape(shapeType:string):IShape{
                 let shape:IShape = null;
                 if(shapeType == "rectangle"){
                     shape = new Rectangle();
@@ -53,8 +50,8 @@ export namespace Factory {
             }
         }
 
-        export class FactoryDeme{
-            public cline():void{
+        export class FactoryDemo{
+            public static cline():void{
                 let factory:ShapeFactory = new ShapeFactory();
                 let s = factory.getShape("rectangle");
                 s.draw();
@@ -106,12 +103,14 @@ export namespace Factory {
             }
         }
 
-        
+        //为color和shape对象抽类来获取工厂
         abstract class AbstractShape {
             abstract getColor(color:string):IColor;
             abstract getShape(shape:string):IShape;
         }
 
+
+        //创建一个shape工厂
         class ShapeFactory extends AbstractShape {
             getColor(): IColor {
                 return null;
@@ -126,6 +125,7 @@ export namespace Factory {
             }
         }
 
+        //创建一个color工厂        
         class ColorFactory extends AbstractShape{
             getColor(color: string): IColor {
                 if(color == "red"){
@@ -139,11 +139,30 @@ export namespace Factory {
             }
         }
 
-<<<<<<< HEAD
+
+        //工厂创建器，来获取工厂
+        class FactoryProducer{
+            public static getFactory(choice:string):AbstractShape{
+                if(choice == "shape"){
+                    return new ShapeFactory();
+                }else if(choice == "color"){
+                    return new ColorFactory();
+                }
+                return null;
+            }
+        }
+
+        export class FactoryDemo{
+            public static client():void{
+                let sFactory = FactoryProducer.getFactory("shape");
+                let s = sFactory.getShape("square");
+                s.draw();
+            }
+        }
+
+
     } 
 
 
 
-=======
->>>>>>> main
 }
