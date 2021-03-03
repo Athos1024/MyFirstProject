@@ -1,0 +1,1 @@
+{"version":3,"file":"Flyweight.d.ts","sourceRoot":"","sources":["../../../src/DesignModel/Flyweight.ts"],"names":[],"mappings":"AACA,yBAAiB,SAAS,CAAA;IAoDtB,MAAa,aAAa;QACtB,OAAO,CAAC,MAAM,CAAC,KAAK,CAAkD;eACvD,IAAI,IAAG,IAAI;QAU1B,OAAO,CAAC,MAAM,CAAC,cAAc;QAI7B,OAAO,CAAC,MAAM,CAAC,UAAU;QAIzB,OAAO,CAAC,MAAM,CAAC,UAAU;KAI5B;CAGJ"}

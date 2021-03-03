@@ -1,3 +1,3 @@
-import { Composite } from "./DesignModel/Composite";
+import { Proxy } from "./DesignModel/Proxy";
 
-Composite.CompositeDemo.client()
+Proxy.ProxyDemo.main()

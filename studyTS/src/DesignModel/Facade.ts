@@ -5,42 +5,45 @@
  */
 
 //外观模式
-namespace Facade {
-
-    class Computer {
-        on() { };
-        off() { };
-    }
-    class Light {
-        on() { };
-        off() { };
-    }
-    class Video {
-        play() { };
-        close() { };
+export namespace Facade {
+    interface Shape{
+        draw():void;
     }
 
-    class HomeTheaterFacade {
-        private _computer: Computer;
-        private _light: Light;
-        private _video: Video;
+    class Rectangle implements Shape{
+        draw(): void {
+            console.log('画矩形');
+        }
+    }
 
-        constructor(c: Computer, l: Light, v: Video) {
-            this._computer = c;
-            this._light = l;
-            this._video = v;
+    class Square implements Shape{
+        draw(): void {
+            console.log('画方形');
+        }
+    }
+
+    class ShapeMaker {
+        private rect:Shape;
+        private square:Shape;
+
+        constructor(){
+            this.rect = new Rectangle();
+            this.square = new Square();
         }
 
-        public watchMovide(): void {
-            this._computer.on();
-            this._light.on();
-            this._video.play();
+        public drawRect():void{
+            this.rect.draw();
         }
 
-        public stopMovie(): void {
-            this._computer.off();
-            this._light.off();
-            this._video.close();
+        public drawSquare():void{
+            this.square.draw();
+        }
+    }
+
+    export class FacadeDemo{
+        public static Client(){
+            let maker = new ShapeMaker();
+            maker.drawRect();
         }
     }
 }

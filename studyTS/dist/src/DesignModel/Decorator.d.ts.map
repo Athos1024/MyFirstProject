@@ -1,1 +1,1 @@
-{"version":3,"file":"Decorator.d.ts","sourceRoot":"","sources":["../../../src/DesignModel/Decorator.ts"],"names":[],"mappings":"AACA;;;GAGG;AAEH,kBAAU,SAAS,CAAC;CAyHnB"}
+{"version":3,"file":"Decorator.d.ts","sourceRoot":"","sources":["../../../src/DesignModel/Decorator.ts"],"names":[],"mappings":"AACA;;;GAGG;AAEH,yBAAiB,SAAS,CAAC;IAiDvB,MAAa,aAAa;eACR,MAAM,IAAG,IAAI;KAS9B;CAGJ"}
