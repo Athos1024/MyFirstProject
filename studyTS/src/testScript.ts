@@ -1,3 +1,3 @@
-import { Proxy } from "./DesignModel/Proxy";
+import { Interpreter } from "./DesignModel/Interpreter";
 
-Proxy.ProxyDemo.main()
+Interpreter.InterperterDemo.mian()

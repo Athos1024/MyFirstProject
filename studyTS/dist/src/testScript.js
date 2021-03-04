@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Proxy_1 = require("./DesignModel/Proxy");
-Proxy_1.Proxy.ProxyDemo.main();
+var Interpreter_1 = require("./DesignModel/Interpreter");
+Interpreter_1.Interpreter.InterperterDemo.mian();
 //# sourceMappingURL=testScript.js.map
