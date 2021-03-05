@@ -39,20 +39,20 @@ export namespace Factory {
 
         //形状工厂
         class ShapeFactory {
-            public  getShape(shapeType:string):IShape{
-                let shape:IShape = null;
-                if(shapeType == "rectangle"){
+            public getShape(shapeType: string): IShape {
+                let shape: IShape = null;
+                if (shapeType == "rectangle") {
                     shape = new Rectangle();
-                }else if(shapeType == "square"){
+                } else if (shapeType == "square") {
                     shape = new Square();
                 }
                 return shape;
             }
         }
 
-        export class FactoryDemo{
-            public static cline():void{
-                let factory:ShapeFactory = new ShapeFactory();
+        export class FactoryDemo {
+            public static cline(): void {
+                let factory: ShapeFactory = new ShapeFactory();
                 let s = factory.getShape("rectangle");
                 s.draw();
 
@@ -64,40 +64,40 @@ export namespace Factory {
     }
 
     //抽象工厂
-    export namespace b{
+    export namespace b {
 
         //产品抽象接口
-        interface IShape{
-            draw():void;
+        interface IShape {
+            draw(): void;
         }
 
         //产品实现类:矩形
-        class Rectangle implements IShape{
+        class Rectangle implements IShape {
             draw(): void {
                 console.log('画一个矩形');
             }
         }
 
-        class Square implements IShape{
+        class Square implements IShape {
             draw(): void {
                 console.log('画一个方形');
             }
         }
 
         //产品抽象接口2
-        interface IColor{
-            fill():void;
+        interface IColor {
+            fill(): void;
         }
 
         //产品实现类：红色
-        class Red implements IColor{
+        class Red implements IColor {
             fill(): void {
                 console.log('涂满红色');
             }
         }
 
         //产品实现类：蓝色
-        class Bule implements IColor{
+        class Bule implements IColor {
             fill(): void {
                 console.log('涂满蓝色');
             }
@@ -105,8 +105,8 @@ export namespace Factory {
 
         //为color和shape对象抽类来获取工厂
         abstract class AbstractShape {
-            abstract getColor(color:string):IColor;
-            abstract getShape(shape:string):IShape;
+            abstract getColor(color: string): IColor;
+            abstract getShape(shape: string): IShape;
         }
 
 
@@ -115,10 +115,10 @@ export namespace Factory {
             getColor(): IColor {
                 return null;
             }
-            getShape(shapeType:string): IShape {
-                if(shapeType == "square"){
+            getShape(shapeType: string): IShape {
+                if (shapeType == "square") {
                     return new Square();
-                }else if(shapeType == "rectangle"){
+                } else if (shapeType == "rectangle") {
                     return new Rectangle();
                 }
                 return null;
@@ -126,11 +126,11 @@ export namespace Factory {
         }
 
         //创建一个color工厂        
-        class ColorFactory extends AbstractShape{
+        class ColorFactory extends AbstractShape {
             getColor(color: string): IColor {
-                if(color == "red"){
+                if (color == "red") {
                     return new Red();
-                }else if(color == "buld"){
+                } else if (color == "buld") {
                     return new Bule();
                 }
             }
@@ -141,28 +141,23 @@ export namespace Factory {
 
 
         //工厂创建器，来获取工厂
-        class FactoryProducer{
-            public static getFactory(choice:string):AbstractShape{
-                if(choice == "shape"){
+        class FactoryProducer {
+            public static getFactory(choice: string): AbstractShape {
+                if (choice == "shape") {
                     return new ShapeFactory();
-                }else if(choice == "color"){
+                } else if (choice == "color") {
                     return new ColorFactory();
                 }
                 return null;
             }
         }
 
-        export class FactoryDemo{
-            public static client():void{
+        export class FactoryDemo {
+            public static client(): void {
                 let sFactory = FactoryProducer.getFactory("shape");
                 let s = sFactory.getShape("square");
                 s.draw();
             }
         }
-
-
-    } 
-
-
-
+    }
 }
