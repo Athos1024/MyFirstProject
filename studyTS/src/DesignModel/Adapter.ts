@@ -45,7 +45,47 @@ export namespace Adapter {
         }
     }
 
-    let mobile = new Mobile();
-    let v5Power = new V5PowerAdapter(new V220Power());
-    mobile.inputPower(v5Power);
+    // let mobile = new Mobile();
+    // let v5Power = new V5PowerAdapter(new V220Power());
+    // mobile.inputPower(v5Power);
+
+
+    
+    class Draw3d{
+        drawCircle3D():void{
+            console.log('draw circle 3d');
+        }
+        drawSquare3D():void{
+            console.log('draw square 3d');
+        }
+    }
+
+    class Draw2d implements Draw{
+        drawCircle(): void {
+            console.log('draw circle 2d');
+        }
+        drawSquare():void{
+            console.log('drwa square 2d');
+        }
+    }
+
+    interface Draw{
+        drawCircle():void;
+        drawSquare():void;
+    }
+
+    class Draw3dAdpater implements Draw{
+        private draw3d = new Draw3d();
+        drawCircle(): void {
+            this.draw3d.drawCircle3D();
+        }
+        drawSquare(): void {
+            this.draw3d.drawSquare3D();
+        }
+    }
+
+
+    let adapter3D:Draw = new Draw3dAdpater();
+    adapter3D.drawCircle();
+    adapter3D.drawSquare();
 }

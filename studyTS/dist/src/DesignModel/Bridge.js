@@ -70,5 +70,44 @@ var Bridge;
         return Bridge;
     }());
     Bridge_1.Bridge = Bridge;
+    var Yellow = /** @class */ (function () {
+        function Yellow() {
+        }
+        Yellow.prototype.getColor = function () {
+            return "yellow";
+        };
+        return Yellow;
+    }());
+    var Green = /** @class */ (function () {
+        function Green() {
+        }
+        Green.prototype.getColor = function () {
+            return "greed";
+        };
+        return Green;
+    }());
+    var Bag = /** @class */ (function () {
+        function Bag() {
+        }
+        Bag.prototype.setColor = function (color) {
+            this.color = color;
+        };
+        return Bag;
+    }());
+    var HandBag = /** @class */ (function (_super) {
+        __extends(HandBag, _super);
+        function HandBag() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        HandBag.prototype.getName = function () {
+            return this.color.getColor() + "handbag";
+        };
+        return HandBag;
+    }(Bag));
+    var bag = new HandBag();
+    bag.setColor(new Green());
+    console.log(bag.getName());
+    bag.setColor(new Yellow());
+    console.log(bag.getName());
 })(Bridge = exports.Bridge || (exports.Bridge = {}));
 //# sourceMappingURL=Bridge.js.map

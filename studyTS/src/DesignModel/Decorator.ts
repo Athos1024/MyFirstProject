@@ -58,13 +58,10 @@ export namespace decorator {
             let circle = new Circle();
             let redCircle = new RedShapeDecorator(new Circle());
 
-            
             circle.draw();
             console.log('===============');
             redCircle.draw();
         }
     }
-
-
 }
 

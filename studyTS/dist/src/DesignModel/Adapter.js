@@ -45,8 +45,45 @@ var Adapter;
         };
         return V5PowerAdapter;
     }());
-    var mobile = new Mobile();
-    var v5Power = new V5PowerAdapter(new V220Power());
-    mobile.inputPower(v5Power);
+    // let mobile = new Mobile();
+    // let v5Power = new V5PowerAdapter(new V220Power());
+    // mobile.inputPower(v5Power);
+    var Draw3d = /** @class */ (function () {
+        function Draw3d() {
+        }
+        Draw3d.prototype.drawCircle3D = function () {
+            console.log('draw circle 3d');
+        };
+        Draw3d.prototype.drawSquare3D = function () {
+            console.log('draw square 3d');
+        };
+        return Draw3d;
+    }());
+    var Draw2d = /** @class */ (function () {
+        function Draw2d() {
+        }
+        Draw2d.prototype.drawCircle = function () {
+            console.log('draw circle 2d');
+        };
+        Draw2d.prototype.drawSquare = function () {
+            console.log('drwa square 2d');
+        };
+        return Draw2d;
+    }());
+    var Draw3dAdpater = /** @class */ (function () {
+        function Draw3dAdpater() {
+            this.draw3d = new Draw3d();
+        }
+        Draw3dAdpater.prototype.drawCircle = function () {
+            this.draw3d.drawCircle3D();
+        };
+        Draw3dAdpater.prototype.drawSquare = function () {
+            this.draw3d.drawSquare3D();
+        };
+        return Draw3dAdpater;
+    }());
+    var adapter3D = new Draw3dAdpater();
+    adapter3D.drawCircle();
+    adapter3D.drawSquare();
 })(Adapter = exports.Adapter || (exports.Adapter = {}));
 //# sourceMappingURL=Adapter.js.map
