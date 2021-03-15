@@ -96,6 +96,7 @@ namespace Strategy {
 
     }
 
+//==========================
     class RoleA extends Role {
         constructor(name: string) {
             super();
@@ -112,4 +113,36 @@ namespace Strategy {
     roleA.defend();
     roleA.display();
     roleA.run();
+    interface Strategy{
+        execute():void;
+    }
+
+    class ConcreteStrategyA implements Strategy{
+        execute(): void {
+            console.log('strategy B');
+        }
+    }
+
+    class ConcreteStrategyB implements Strategy{
+        execute(): void {
+            console.log('strategy A');
+        }
+    }
+
+    class Context {
+        private strategy:Strategy;
+        constructor(strategy:Strategy){
+            this.strategy = strategy;
+        }
+        public executeStrategy():void{
+            this.strategy.execute();
+        }
+    }
+
+    let context = new Context(new ConcreteStrategyA());
+    context.executeStrategy();
+    context = new Context(new ConcreteStrategyB());
+    context.executeStrategy();
+
+
 }

@@ -83,6 +83,7 @@ var Strategy;
         };
         return Role;
     }());
+    //==========================
     var RoleA = /** @class */ (function (_super) {
         __extends(RoleA, _super);
         function RoleA(name) {
@@ -101,5 +102,34 @@ var Strategy;
     roleA.defend();
     roleA.display();
     roleA.run();
+    var ConcreteStrategyA = /** @class */ (function () {
+        function ConcreteStrategyA() {
+        }
+        ConcreteStrategyA.prototype.execute = function () {
+            console.log('strategy B');
+        };
+        return ConcreteStrategyA;
+    }());
+    var ConcreteStrategyB = /** @class */ (function () {
+        function ConcreteStrategyB() {
+        }
+        ConcreteStrategyB.prototype.execute = function () {
+            console.log('strategy A');
+        };
+        return ConcreteStrategyB;
+    }());
+    var Context = /** @class */ (function () {
+        function Context(strategy) {
+            this.strategy = strategy;
+        }
+        Context.prototype.executeStrategy = function () {
+            this.strategy.execute();
+        };
+        return Context;
+    }());
+    var context = new Context(new ConcreteStrategyA());
+    context.executeStrategy();
+    context = new Context(new ConcreteStrategyB());
+    context.executeStrategy();
 })(Strategy || (Strategy = {}));
 //# sourceMappingURL=Strategy.js.map

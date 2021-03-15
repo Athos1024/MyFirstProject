@@ -5,8 +5,11 @@
 缺点：每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。
  */
 
+//相当于MVC 的V，每个View都是有一个baseView，然后onshow前会做一些处理，onhide又做一些处理。
+//逻辑层就是现在onshow 和 onhide;
+
 //模板模式
-namespace Template {
+export namespace Template {
 
     abstract class Worker {
         protected _name: string;
@@ -72,4 +75,40 @@ namespace Template {
     HR.workOneDay();
     let IT = new ITWorker("b君");
     IT.workOneDay();
+
+ 
+
+    abstract class Component{
+        constructor(){
+            this.start();
+            this.doRender();
+            this.end();
+        }
+        abstract doRender():void;
+        private start():void{
+            console.log('start');
+        }
+        private end():void{
+            console.log('end');
+        }
+    }
+
+    class ComponentA extends Component{
+        doRender(): void {
+            console.log('render A');
+        }
+    }
+
+    class ComponentB extends Component{
+        doRender(): void {
+            console.log('render B');
+        }
+    }
+
+    let cA = new ComponentA();
+    let cB = new ComponentB();
+
 }
+
+
+

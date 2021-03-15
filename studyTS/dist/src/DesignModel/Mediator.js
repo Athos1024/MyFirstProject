@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Mediator = void 0;
 var Mediator;
 (function (Mediator_1) {
+    // 优点： 1、降低了类的复杂度，将一对多转化成了一对一。 2、各个类之间的解耦。 3、符合迪米特原则。
+    // 缺点：中介者会庞大，变得复杂难以维护
     //创建中介者
     var ChatRoom = /** @class */ (function () {
         function ChatRoom() {

@@ -46,3 +46,9 @@ fun(A)
 
 
 //export default就是输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。所以，下面的写法是有效的。
+
+
+
+
+//let a = arr.reduce((sum, item) => {return sum = sum + item}, "")
+//let a = arr.reduce((sum, item) => (sum = sum + item), "")

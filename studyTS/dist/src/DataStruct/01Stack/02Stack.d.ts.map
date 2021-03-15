@@ -1,0 +1,1 @@
+{"version":3,"file":"02Stack.d.ts","sourceRoot":"","sources":["../../../../src/DataStruct/01Stack/02Stack.ts"],"names":[],"mappings":"AAAA,yBAAiB,OAAO,CAAA;IAEpB,MAAa,KAAK,CAAC,CAAC;QAChB,OAAO,CAAC,KAAK,CAAQ;QACrB,OAAO,CAAC,KAAK,CAAkB;;QAM/B,IAAI,CAAC,OAAO,EAAC,CAAC;QAId,IAAI;QAIJ,OAAO;QAIP,IAAI;QAKJ,GAAG;QAKH,KAAK;QAKL,QAAQ,CAAC,SAAS,SAAM;KAM3B;CACJ"}

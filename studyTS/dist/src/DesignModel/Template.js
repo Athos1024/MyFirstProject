@@ -1,3 +1,4 @@
+"use strict";
 /**
 优点： 1、封装不变部分，扩展可变部分。 2、提取公共代码，便于维护。 3、行为由父类控制，子类实现。
 缺点：每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。
@@ -15,6 +16,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Template = void 0;
+//相当于MVC 的V，每个View都是有一个baseView，然后onshow前会做一些处理，onhide又做一些处理。
+//逻辑层就是现在onshow 和 onhide;
 //模板模式
 var Template;
 (function (Template) {
@@ -86,5 +91,41 @@ var Template;
     HR.workOneDay();
     var IT = new ITWorker("b君");
     IT.workOneDay();
-})(Template || (Template = {}));
+    var Component = /** @class */ (function () {
+        function Component() {
+            this.start();
+            this.doRender();
+            this.end();
+        }
+        Component.prototype.start = function () {
+            console.log('start');
+        };
+        Component.prototype.end = function () {
+            console.log('end');
+        };
+        return Component;
+    }());
+    var ComponentA = /** @class */ (function (_super) {
+        __extends(ComponentA, _super);
+        function ComponentA() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        ComponentA.prototype.doRender = function () {
+            console.log('render A');
+        };
+        return ComponentA;
+    }(Component));
+    var ComponentB = /** @class */ (function (_super) {
+        __extends(ComponentB, _super);
+        function ComponentB() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        ComponentB.prototype.doRender = function () {
+            console.log('render B');
+        };
+        return ComponentB;
+    }(Component));
+    var cA = new ComponentA();
+    var cB = new ComponentB();
+})(Template = exports.Template || (exports.Template = {}));
 //# sourceMappingURL=Template.js.map

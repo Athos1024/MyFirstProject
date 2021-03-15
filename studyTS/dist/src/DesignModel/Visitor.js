@@ -1,3 +1,4 @@
+//访问者模式
 var Visitor;
 (function (Visitor) {
     var ConcreteElementA = /** @class */ (function () {
