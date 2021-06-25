@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "experimentalDecorators": true,
+      // "emitDecoratorMetadata": true,
+      "noEmitHelpers": true,
+      "incremental": true,
+      "sourceMap": true,
+      "declaration": true,
+     "declarationMap": true,
+      "outFile": "../../compile/mod2.js"
+    },
+    "include": [
+        "../../compile/mod1.d.ts",
+        "./**/*"
+    ]
+  }

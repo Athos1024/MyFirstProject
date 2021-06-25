@@ -1,15 +1,14 @@
-export declare namespace Stack02 {
+declare namespace Stack02 {
     class Stack<T> {
-        private count;
         private items;
+        private count;
         constructor();
-        push(element: T): void;
-        size(): number;
-        isEmpty(): boolean;
+        push(element: T): T;
         peek(): T;
         pop(): T;
+        isEmpty(): boolean;
+        size(): number;
         clear(): void;
-        toString(separator?: string): string;
     }
 }
 //# sourceMappingURL=02Stack.d.ts.map

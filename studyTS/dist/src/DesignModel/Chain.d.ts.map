@@ -1,1 +1,1 @@
-{"version":3,"file":"Chain.d.ts","sourceRoot":"","sources":["../../../src/DesignModel/Chain.ts"],"names":[],"mappings":"AAAA,yBAAiB,KAAK,CAAA;IAsElB,MAAa,SAAS;QAClB,OAAO,CAAC,MAAM,CAAC,iBAAiB;eAUlB,IAAI,IAAG,IAAI;KAO5B;CACJ"}
+{"version":3,"file":"Chain.d.ts","sourceRoot":"","sources":["../../../src/DesignModel/Chain.ts"],"names":[],"mappings":"AACA,yBAAiB,KAAK,CAAA;IAsElB,MAAa,SAAS;QAClB,OAAO,CAAC,MAAM,CAAC,iBAAiB;eAUlB,IAAI,IAAG,IAAI;KAO5B;CACJ"}

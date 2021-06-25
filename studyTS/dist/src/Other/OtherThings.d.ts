@@ -17,4 +17,5 @@ declare function fun(cls: new () => A): void;
     let clsB[key] = clsA[key];
  }
  */
+/**初始化脚本 */
 //# sourceMappingURL=OtherThings.d.ts.map

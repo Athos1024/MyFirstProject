@@ -39,4 +39,40 @@ fun(A);
 //export default就是输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。所以，下面的写法是有效的。
 //let a = arr.reduce((sum, item) => {return sum = sum + item}, "")
 //let a = arr.reduce((sum, item) => (sum = sum + item), "")
+//找到是否存在这个key
+// let arr :{[key:string]:number} = {};
+// arr[5] = 10;
+// arr[1] = 20;
+//Object.prototype.hasOwnProperty.call(arr,5) 
+//new Set();
+//arguments 方法的参数
+//node.js 可以在控制台输入 文件路径 node 文件名 运行
+//node.js 关闭可以ctrl + c
+//console 的用法
+// console.log('我的%s已经%d岁', '猫', 2)
+// %s 会格式化变量为字符串
+// %d 会格式化变量为数字
+// %i 会格式化变量为其整数部分
+// %o 会格式化变量为对象
+//console.clear() 会清除控制台（其行为可能取决于所使用的控制台）。
+// console.count() 是一个便利的方法。
+//console.trace()打印堆栈
+// 可以使用 time() 和 timeEnd() 轻松地计算函数运行所需的时间：
+// console.log('\x1b[33m%s\x1b[0m', '你好')为输出着色
+// 可以使用 npm install chalk 进行安装，然后就可以使用它：
+// const chalk = require('chalk')
+// console.log(chalk.yellow('你好'))
+// import chalk = require('chalk')
+// console.log(chalk.yellow('你好'))
+//导入文件
+// import chalk, {Chalk} from "chalk"
+//true和false转 0 1
+//~~true ~~false 也可以过滤小数 ~~1.00001
+/**初始化脚本 */
+// function loadLib(url) {
+//    var script = document.createElement("script");
+//    script.async = false;
+//    script.src = url;
+//    document.body.appendChild(script);
+// }
 //# sourceMappingURL=OtherThings.js.map

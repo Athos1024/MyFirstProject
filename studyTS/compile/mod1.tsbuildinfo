@@ -1,0 +1,27 @@
+{
+  "bundle": {
+    "commonSourceDirectory": "../module/mod1",
+    "sourceFiles": [
+      "../module/mod1/clas_A.ts"
+    ],
+    "js": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 170,
+          "kind": "text"
+        }
+      ]
+    },
+    "dts": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 78,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  "version": "4.1.3"
+}

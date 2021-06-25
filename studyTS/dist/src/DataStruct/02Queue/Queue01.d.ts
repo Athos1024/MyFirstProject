@@ -7,10 +7,9 @@ export declare namespace Queue01 {
         enqueue(...element: Array<T>): void;
         dequeue(): T;
         isEmpty(): boolean;
-        peek(): T;
         size(): number;
         clear(): void;
-        toString(): string;
+        peek(): T;
     }
 }
 //# sourceMappingURL=Queue01.d.ts.map

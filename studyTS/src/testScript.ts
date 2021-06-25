@@ -1,103 +1,48 @@
-import { Node } from "./Model";
-
-export function defaultEquals(a: unknown, b: unknown) {
-    return a === b
-}
-
-namespace testScript {
-
-    class LinkedList<T>{
-        protected count: number;
-        protected head: Node<T>;
-        protected equalsFn: typeof defaultEquals;
-        constructor() {
-            this.count = 0;
-            this.head = null;
-            this.equalsFn = defaultEquals;
-        }
-
-        push(element: T) {
-            const node = new Node(element);
-            if (this.head == null) {
-                this.head = node;
-            } else {
-                let current = this.head;
-                while (current.next !== null) {
-                    current = current.next;
-                }
-                current.next = node;
-            }
-            this.count++;
-        }
+namespace test {
 
 
-        insert(element: T, index: number) {
-            if (index < 0 || index > this.count) return false;
-            let current = this.head;
-            const node = new Node(element);
-            if (index == 0) {
-                this.head = node;
-                node.next = current;
-            } else {
-                let previous = this.getElementAt(index - 1);
-                current = previous.next;
-                previous.next = node;
-                node.next = current;
-            }
-            this.count++;
-            return true;
-        }
+    // let myFirstPromise = new Promise(function(resolve, reject){
+    //     //当异步代码执行成功时，我们才会调用resolve(...), 当异步代码失败时就会调用reject(...)
+    //     //在本例中，我们使用setTimeout(...)来模拟异步代码，实际编码时可能是XHR请求或是HTML5的一些API方法.
+    //     setTimeout(function(){
+    //         resolve("成功!"); //代码正常执行！
+    //     }, 250);
+    // });
 
-        getElementAt(index: number) {
-            if (index < 0 || index >= this.count) return undefined;
-            let current = this.head;
-            for (let i = 0; i < index; i++) {
-                const element = current.next;
-            }
-            return current;
-        }
-
-        indexOf(element: T) {
-            let current = this.head;
-            let res = 0;
-            let temp = false;
-            while (current !== null) {
-                if (this.equalsFn(current.element, element)) {
-                    temp = true;
-                    break;
-                }
-                current = current.next;
-                res++;
-            }
-            return temp ? res : -1;
-        }
-
-        removeAt(index: number) {
-            //从链表的特定位置移除一个元素。
-            if (index < 0 || index >= this.count) return undefined
-            let current = this.head
-            if (index === 0) {
-                this.head = current.next
-            } else {
-                // 将 previous 与 current 的下一项链接起来：跳过 current，从而移除它
-                let preivous = this.getElementAt(index - 1) 
-                current = preivous.next 
-                preivous.next = current.next 
-            }
-            this.count--
-            return current.element
-        }
-
-        remove(element: T) {
-            let index = this.indexOf(element);
-            return index === -1 ? null : this.removeAt(index);
-        }
-
-        isEmpty() {
-            return this.count == 0;
-        }
+    // myFirstPromise.then(function(successMessage){
+    //     //successMessage的值是上面调用resolve(...)方法传入的值.
+    //     //successMessage参数不一定非要是字符串类型，这里只是举个例子
+    //     console.log("Yay! " + successMessage);
+    // });
 
 
+    // let res = [1,2,3,4,5];
+    // res.map((first,firstIndex)=>{
+
+    // })
+
+    // function twoSum(num1:number[],num2:number){
+
+    // }
+
+    // class A{
+    //     public static  foo:any;
+    // }
+
+
+    // class B{
+
+    // }
+
+    // A.foo = new B();
+
+
+
+    let arr = [null,null,11,222];
+  
+    class A{
+        
     }
 
 }
+

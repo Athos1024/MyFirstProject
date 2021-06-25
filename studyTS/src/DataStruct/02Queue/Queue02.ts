@@ -1,28 +1,26 @@
-namespace Queue02{
-    
-    class Deque<T>{
-        private count:number;
-        private lowestCount:number;
-        private items:{[key:string]:T};
+//双队列
+export namespace Queue02 {
 
-        constructor(){
+    export class Deque<T>{
+        private count: number;
+        private lowestCount: number;
+        private items: { [key: string]: T };
+        constructor() {
+            this.items = {};
             this.count = 0;
             this.lowestCount = 0;
-            this.items = {};
         }
 
-        addFront(...element:Array<T>):void{
-            if(element.length  === 0) return;
-            if(element.length > 1)return element.forEach((el)=> this.addFront(el));
-
+        addFront(...element: Array<T>) {
+            if (element.length > 1) return element.forEach(el => this.addFront(el));
             let value = element[0];
-            
-            if(this.isEmpty()) return this.addBack(value);
 
-            if(this.lowestCount > 0){
-                this.items[--this.lowestCount] = value;
-            }else if(this.lowestCount == 0){
-                for (let i = this.count; i > 0; i--) {
+            if (this.isEmpty()) return this.addBack(value);
+
+            if (this.lowestCount > 0) {
+                this.items[this.lowestCount++] = value;
+            } else {
+                for (let i = this.count; i > 0; i++) {
                     this.items[i] = this.items[i - 1];
                 }
                 this.items[0] = value;
@@ -30,26 +28,36 @@ namespace Queue02{
             this.count++;
         }
 
-
-        addBack(...element:Array<T>):void{
-            element.length == 1 ? this.items[this.lowestCount + this.count++] = element[0]:
-             element.forEach((el)=> this.items[this.lowestCount　+ this.count++] = el);
+        addBack(...element: Array<T>) {
+            element.length == 1 ? this.items[this.lowestCount + this.count++] = element[0] :
+                element.forEach(el => this.items[this.lowestCount + this.count++] = el);
         }
 
-        isEmpty(){
-            return this.count == 0
-        }
-
-        removeFront(){
-            if(this.isEmpty()) return undefined;
-            let res = this.items[this.lowestCount];
-            delete this.items[this.lowestCount++];
+        removeFront() {
+            if (this.isEmpty()) return undefined;
+            let res = this.items[this.lowestCount++];
+            delete this.items[this.lowestCount];
             this.count--;
             return res;
         }
 
+        removeBack() {
+            if (this.isEmpty()) return undefined;
+            let res = this.items[--this.count + this.lowestCount];
+            delete this.items[this.count + this.lowestCount];
+            return res;
+        }
+
+        isEmpty() {
+            return this.count == 0;
+        }
+
+        peekFront(){
+            return this.items[this.lowestCount];
+        }
+
         peekBack(){
-            return this.items[this.lowestCount + this.count -1];
+            return this.items[this.lowestCount + this.count - 1];
         }
 
         size(){
@@ -57,12 +65,10 @@ namespace Queue02{
         }
 
         clear(){
-            this.items ={};
-            this.count = this.lowestCount = 0;
-        }
-
-        toString(){
-            return this.isEmpty() ? "" :Object.keys(this.items).reduce((sum,item) => (sum+= item),"").slice(1);
+            this.items = {};
+            this.count = 0;
+            this.lowestCount = 0;
         }
     }
+
 }

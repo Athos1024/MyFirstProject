@@ -12,6 +12,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\studyTS\\src\\testScript.ts",
+            // "program": "${workspaceFolder}/studyTS/dist/src/testScript.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

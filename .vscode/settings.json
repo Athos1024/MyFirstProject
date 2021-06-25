@@ -1,3 +1,21 @@
 {
-    "compile-hero.disable-compile-files-on-did-save-code": true
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "files.exclude": {
+        "**/.d.ts": true,
+        "**/.d.ts.map": true,
+        "**/.js.map": true
+    },
+    "todohighlight.exclude": [
+    
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.vscode/**",
+        "**/.github/**",
+        "**/_output/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/.next/**"
+    ]
 }

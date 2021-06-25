@@ -1,1 +1,1 @@
-{"version":3,"file":"01Stack.d.ts","sourceRoot":"","sources":["../../../../src/DataStruct/01Stack/01Stack.ts"],"names":[],"mappings":"AAAA,kBAAU,OAAO,CAAA;CAoChB"}
+{"version":3,"file":"01Stack.d.ts","sourceRoot":"","sources":["../../../../src/DataStruct/01Stack/01Stack.ts"],"names":[],"mappings":"AAEA,yBAAiB,OAAO,CAAC;IAErB,MAAa,KAAK,CAAC,CAAC;QAChB,OAAO,CAAC,KAAK,CAAU;;QAKvB,IAAI,CAAC,OAAO,EAAE,CAAC;QAIf,IAAI;QAIJ,GAAG;QAIH,IAAI;QAIJ,KAAK;QAIL,OAAO;KAGV;CAqCJ"}
